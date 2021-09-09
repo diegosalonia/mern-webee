@@ -1,5 +1,11 @@
 const router = require("express").Router();
-const { getSensors, createSensor, getSensor, updateSensor, deleteSensor } = require('../controllers/sensor.controller')
+const {
+  getSensors,
+  createSensor,
+  getSensor,
+  updateSensor,
+  deleteSensor,
+} = require("../controllers/sensor.controller");
 
 router.get("/", getSensors);
 router.post("/", createSensor);
