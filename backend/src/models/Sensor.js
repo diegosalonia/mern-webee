@@ -3,20 +3,20 @@ const { Schema, model } = require("mongoose");
 const GeoSchema = new Schema({
   type: {
     type: String,
-    default: "Point"
+    default: "Point",
   },
   coordinates: {
     type: [Number],
     unique: true,
-    index: "2dsphere"
-  }
-})
+    index: "2dsphere",
+  },
+});
 
 const sensorSchema = new Schema(
   {
     name: {
-      type:String,
-      unique: true
+      type: String,
+      unique: true,
     },
     location: GeoSchema,
     active: Boolean,

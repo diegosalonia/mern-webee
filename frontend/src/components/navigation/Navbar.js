@@ -1,10 +1,10 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid">
+      <div className="container">
         <Link className="navbar-brand" to="/">
           Sensors
         </Link>
@@ -20,24 +20,16 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" href="/">
-                Home
+              <Link className="nav-link" to="/sensorevents">
+                Sensor Events
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Features
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Pricing
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled">Disabled</a>
+              <Link className="nav-link" to="/createsensor">
+                create a new sensor
+              </Link>
             </li>
           </ul>
         </div>
