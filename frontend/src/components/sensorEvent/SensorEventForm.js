@@ -25,19 +25,20 @@ const SensorEventForm = () => {
     await createSensorEvent(sensor);
     toast.success("New Sensor Event Created");
     setSensor(initialState)
-    history.push('/')
   };
 
-  const getOneSensor = async(_id) => {
-    const resp = await getSensor(_id)
-    const { name, id } = resp.data
-    console.log(resp.data)
-    setSensor({name, sensorId: id})
-  }
+  // const getOneSensor = async(id) => {
+  //   const resp = await getSensor(id)
+  //   const { name, _id } = resp.data
+  //   console.log(resp)
+  //   setSensor({name, sensorId: _id})
+  // }
 
-  useEffect(() => {
-    if(params.id) console.log(params.id)
-  }, [])
+  // useEffect(() => {
+  //   if(params.id) {
+  //      getOneSensor(params.id)
+  //   }
+  // }, [params.id])
 
   return (
     <div className="row">
@@ -53,7 +54,6 @@ const SensorEventForm = () => {
                 className="form-control"
                 onChange={handleInputChange}
                 value={sensor.name}
-                autofocus
               />
             </div>
             <br />
@@ -66,7 +66,6 @@ const SensorEventForm = () => {
                 className="form-control"
                 onChange={handleInputChange}
                 value={sensor.sensorId}
-                autofocus
               />
             </div>
             <br />
@@ -79,7 +78,6 @@ const SensorEventForm = () => {
                 className="form-control"
                 onChange={handleInputChange}
                 value={sensor.value}
-                autofocus
               />
             </div>
             <br />
