@@ -22,13 +22,18 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link" to="/sensorevents">
-                Sensor Events
+              <Link className="nav-link" to="/createsensor">
+                create a new sensor
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/createsensor">
-                create a new sensor
+              <Link className="nav-link" to="/sensorevents/list">
+                Events List
+              </Link>
+              </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/sensorevents">
+                Sensor Events
               </Link>
             </li>
           </ul>
