@@ -7,6 +7,7 @@ const Sensor = () => {
 
   const loadSensor = async () => {
     const resp = await getSensors();
+    console.log(resp);
     setSensors(resp.data);
   };
 
@@ -15,11 +16,15 @@ const Sensor = () => {
   }, []);
 
   return (
-    <div className="row-md-4">
-      {sensors.map((sensor) => {
-        console.log(sensor);
-        return <SensorItem sensor={sensor} key={sensor._id}/>;
-      })}
+    <div className="container d-flex justify-content-center">
+      <div className="row align-items-start">
+        <div className="row d-flex">
+          <br />
+          {sensors.map((sensor) => {
+            return <SensorItem sensor={sensor} key={sensor._id} />;
+          })}
+        </div>
+      </div>
     </div>
   );
 };

@@ -2,6 +2,10 @@ import axios from "axios";
 
 const api = "http://localhost:3000/api";
 
+export const createSensor = async (sensor) => {
+  return await axios.post(`${api}/sensor`, sensor);
+};
+
 export const getSensors = async () => {
   return await axios.get(`${api}/sensor`);
 };
