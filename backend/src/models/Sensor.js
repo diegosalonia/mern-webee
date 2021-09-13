@@ -1,17 +1,9 @@
 const { Schema, model, Decimal28 } = require("mongoose");
 const geoCoder = require("../utils/geocoder");
 
-// const GeoSchema = new Schema({
-//     coordinates: {
-//     type: [Number],
-//     unique: true,
-//     index: "2dsphere",
-//   },
-// });
-
 const SensorSchema = new Schema(
   {
-    // _id: Schema.Types.ObjectId,
+    _id: Schema.Types.ObjectId,
     name: {
       type: String,
       unique: true,

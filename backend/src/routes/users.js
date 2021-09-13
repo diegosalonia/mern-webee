@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const { createUser, getById } = require("../controllers/users");
+const { createUser, getById } = require("../controllers/usersController");
 const { postRequestValidations, getRequestValidation } = require("../middlewares/users");
 
 router.post("/", postRequestValidations, createUser);
-router.get("/:id(\\d+)/", getRequestValidation, getById);
+router.get("/:id", getRequestValidation, getById);
 
 module.exports = router;

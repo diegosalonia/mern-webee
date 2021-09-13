@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Card, FloatingLabel, Form } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useHistory, useParams } from "react-router";
 import { toast } from "react-toastify";
-import { createSensor, getSensor } from "./SensorService";
+import { createSensor, getSensor, updateSensor } from "./SensorService";
 
 const SensorCreatorForm = () => {
   const history = useHistory();
   const params = useParams();
 
   const initialState = {
-    _id: {},
+    _id: "",
     name: "",
     address:"",
     location: "",
@@ -25,18 +25,23 @@ const SensorCreatorForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const resp = await createSensor(sensor);
-    console.log(resp)
-    toast.success("New Sensor Created");
-    setSensor(initialState);
+    
+    if (!params.id) {
+      await createSensor(sensor);
+      toast.success("New Sensor Created");
+      setSensor(initialState);      
+    } else {
+      await updateSensor(params.id, sensor);
+    }
+
+
     history.push("/");
   };
 
   const getOneSensor = async (id) => {
     const resp = await getSensor(id);
-    const { name, formattedAddress, address, minval, maxval } = resp.data;
-    console.log(resp);
-    setSensor({ name, formattedAddress, address, minval, maxval });
+    const { name, formattedAddress, minval, maxval } = resp.data;
+    setSensor({ name, address: formattedAddress, minval, maxval });
   };
 
   useEffect(() => {

@@ -27,18 +27,19 @@ const SensorEventForm = () => {
     setSensor(initialState)
   };
 
-  // const getOneSensor = async(id) => {
-  //   const resp = await getSensor(id)
-  //   const { name, _id } = resp.data
-  //   console.log(resp)
-  //   setSensor({name, sensorId: _id})
-  // }
-
-  // useEffect(() => {
-  //   if(params.id) {
-  //      getOneSensor(params.id)
-  //   }
-  // }, [params.id])
+  
+  useEffect(() => {
+    const getOneSensor = async(id) => {
+      const resp = await getSensor(id)
+      const { name, _id } = resp.data
+      console.log(resp)
+      setSensor({name, sensorId: _id})
+      history.push("sensorevents/list");
+    }
+    if(params.id) {
+       getOneSensor(params.id)
+    }
+  }, [history, params.id])
 
   return (
     <div className="row">
