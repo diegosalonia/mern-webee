@@ -6,7 +6,6 @@ const validResult = (req, res, next) => {
   if (!errors.isEmpty()) {
     throw new AppError("ValidaTion Errors", 400, errors.errors);
   }
-  next();
 };
 
 module.exports = {

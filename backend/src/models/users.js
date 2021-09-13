@@ -1,29 +1,29 @@
 const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 
+const enu = ['USER_ROLE', 'ADMIN_ROLE']
+
 const UserSchema = new Schema(
   {
     // Model attributes are defined here
-    password: {
-      type: String,
-      required: true,
-    },
     name: {
       type: String,
-      required: true,
+    },
+    password: {
+      type: String,
+      required: [true, 'Pasword required']
     },
     email: {
       type: String,
-      required: true,
-      unique: true,
+      required: [true, 'Email required'],
+      unique: true
     },
     role: {
       type: String,
-      enum: ["USER_ROLE", "ADMIN_ROLE"],
-      default: "USER_ADMIN",
+      enum: enu
     },
   },
   {}
 );
 
-module.exports = User;
+module.exports = model("User", UserSchema);

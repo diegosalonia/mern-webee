@@ -2,14 +2,14 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const userService = require("../services/userService");
 const AppError = require("../errors/appError");
-const logger = require("../loaders/logger");
+const logger = require("../logger/index");
 const config = require("../config");
+const User = require("../models/Users");
 
 const login = async (email, password) => {
   try {
     //Validación de email
-    const user = await userService.findByEmail(email);
-
+    const user = await User.findOne({email: email});
     if (!user) {
       throw new AppError(
         "Authentication failed! Email / password does not correct.",
@@ -17,13 +17,10 @@ const login = async (email, password) => {
       );
     }
 
-    //Validación de usaurio habilitado
-    if (!user.enable) {
-      throw new AppError("Authentication failed! User disabled.", 401);
-    }
-
     //Validación de password
+    user.password = await bcrypt.hash(user.password, 10);
     const validPassword = await bcrypt.compare(password, user.password);
+    logger.info(`validPassword: ${validPassword}`)
     if (!validPassword) {
       throw new AppError(
         "Authentication failed! Email / password does not correct.",
@@ -64,17 +61,12 @@ const validToken = async (token) => {
     logger.info(`User id in the token: ${id}`);
 
     // validar si hay usuario en bd
-    const user = await userService.findById(id);
+    const user = await User.findById(id);
     if (!user) {
       throw new AppError(
         "Authentication failed! Invalid Token - User not found",
         401
       );
-    }
-
-    // validar si usaurio esta habilitado
-    if (!user.enable) {
-      throw new AppError("Authentication failed! User disabled", 401);
     }
 
     //retornar el usaurio
@@ -93,7 +85,7 @@ const validRole = (user, ...roles) => {
 
 const register = async (email, password) => {
   const user = { email, password };
-  await userService.save(user);
+  await User.create(user);
 
   // hacer mail de confirmacion de registro
   return "user registered. Please LogIn";

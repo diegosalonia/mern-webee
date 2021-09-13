@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { login, register } = require("../controllers/auth");
+const { login, register } = require("../controllers/authController");
 const {
   postLoginRequestValidations,
   postRegisterRequestValidations,

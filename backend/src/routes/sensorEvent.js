@@ -3,7 +3,7 @@ const {
   getSensorsEvent,
   createSensorEvent,
   getSensorEvent,
-} = require("../controllers/sensorEvent.controller");
+} = require("../controllers/sensorEventController");
 
 router.get("/", getSensorsEvent);
 router.post("/", createSensorEvent);

@@ -8,6 +8,7 @@ import SensorEvents from "./components/sensorEvent/SensorEvents";
 import { ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
+import SensorEventForm from "./components/sensorEvent/SensorEventForm";
 
 function App() {
   return (
@@ -17,10 +18,10 @@ function App() {
       <div className="container p-4">
         <Switch>
           <Route exact path="/" component={Sensor} />
-          <Route path="/sensorevents" component={SensorEvents} />
+          <Route path="/sensorevents/list" component={SensorEvents} />
           <Route path="/createsensor" component={SensorCreatorForm} />
           <Route path="/update/:id" component={SensorCreatorForm} />
-          <Route path="/updateevents/:id" component={SensorEvents} />
+          <Route path="/updateevents/:id" component={SensorEventForm} />
         </Switch>
         <ToastContainer />
       </div>
